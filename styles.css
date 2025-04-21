@@ -60,15 +60,15 @@ header::before {
 
 .bg-image {
     position: absolute;
-    top: -20px;
-    left: -20px;
-    width: calc(100% + 40px);
-    height: calc(100% + 40px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('img/cpl-bg.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(5px);
-    overflow: hidden;
+    transform: scale(1.1);  /* Prevent blur edges from showing */
 }
 
 .logo {
@@ -241,4 +241,108 @@ h1 {
     font-size: 0.8em;
     color: var(--color-accent);
     text-align: center;
+}
+
+/* Mobile-specific fixes */
+@media screen and (max-width: 768px) {
+    html {
+        min-height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: var(--color-primary-strong);
+    }
+
+    body {
+        min-height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .container-fluid {
+        min-height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, 
+            var(--color-primary-strong) 0%,
+            var(--color-primary-strong) 30%,
+            var(--color-secondary) 70%,
+            var(--color-secondary-strong) 85%,
+            var(--color-background) 100%
+        );
+    }
+
+    header {
+        height: 60vh;
+        min-height: 350px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .logo {
+        max-height: 45vh;
+        width: auto;
+    }
+}
+
+/* Landscape mode fixes for mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    html {
+        width: 100%;
+        height: 100%;
+        background: var(--color-primary-strong);
+        overflow-x: hidden;
+    }
+
+    body {
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid {
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(180deg, 
+            var(--color-primary-strong) 0%,
+            var(--color-primary-strong) 30%,
+            var(--color-secondary) 70%,
+            var(--color-secondary-strong) 85%,
+            var(--color-background) 100%
+        );
+    }
+
+    header {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .bg-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .logo {
+        max-height: 60vh;
+    }
 }
