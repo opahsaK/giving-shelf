@@ -31,8 +31,9 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
 }
-
 
 p:not(.footer p), li {
     font-size: 1.2em;
@@ -80,11 +81,19 @@ header::before {
 
 .container-fluid {
     background: linear-gradient(180deg, 
-    var(--color-primary-strong) 10%,
-    var(--color-secondary) 70%,
-    var(--color-secondary) 80%,
-    var(--color-secondary-strong) 100%
-) ;
+        var(--color-primary-strong) 0%,
+        var(--color-secondary) 60%,
+        var(--color-secondary-strong) 90%,
+        var(--color-background) 100%
+    );
+    flex: 1 0 auto; /* Changed from flex: 1 */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0; /* Changed from -2px */
+    overflow: hidden; /* Add this to contain the gradient */
+    min-height: 0; /* Add this to prevent overflow */
 }
 
 .section {
@@ -212,8 +221,12 @@ h1 {
 .footer {
     background: var(--color-background);
     color: var(--color-accent);
-    margin-top: auto;
     padding: 2em 0;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: auto; /* Add this to push footer to bottom */
+    flex-shrink: 0; /* Add this to prevent footer from shrinking */
 }
 
 .footer p {
@@ -237,10 +250,88 @@ h1 {
     transform: scale(1.1);
 }
 
+.invert {
+    filter: invert(1);
+}
+
 .small-text {
     font-size: 0.8em;
     color: var(--color-accent);
     text-align: center;
+}
+
+/* Add this to your existing CSS */
+.nav-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.hamburger {
+    background: rgba(41, 128, 145, 0.9);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hamburger:hover {
+    background: rgba(30, 116, 138, 0.9);
+}
+
+.hamburger .line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: white;
+    border-radius: 3px;
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    background: rgba(41, 128, 145, 0.95);
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-family: "aktiv-grotesk", sans-serif;
+    font-size: 1.1em;
+    padding: 5px 15px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: rgb(245, 134, 52);
+}
+
+/* Animation for hamburger menu */
+.hamburger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 8px);
+}
+
+.hamburger.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -8px);
 }
 
 /* Mobile-specific fixes */
@@ -262,15 +353,11 @@ h1 {
     }
 
     .container-fluid {
-        min-height: 100vh;
-        width: 100%;
-        margin: 0;
-        padding: 0;
+        min-height: 0; /* Changed from 100vh */
         background: linear-gradient(180deg, 
             var(--color-primary-strong) 0%,
             var(--color-primary-strong) 30%,
             var(--color-secondary) 70%,
-            var(--color-secondary-strong) 85%,
             var(--color-background) 100%
         );
     }
@@ -316,15 +403,13 @@ h1 {
     }
 
     .container-fluid {
-        width: 100%;
-        min-height: 100vh;
         background: linear-gradient(180deg, 
             var(--color-primary-strong) 0%,
-            var(--color-primary-strong) 30%,
-            var(--color-secondary) 70%,
-            var(--color-secondary-strong) 85%,
+            var(--color-secondary) 60%,
+            var(--color-secondary-strong) 90%,
             var(--color-background) 100%
         );
+        min-height: 100%;
     }
 
     header {
