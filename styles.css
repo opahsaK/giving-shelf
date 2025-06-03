@@ -12,7 +12,7 @@
     );
 }
 
-/* Add animations */
+/* animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -24,24 +24,26 @@
     100% { transform: translateY(0px); }
 }
 
-/* document styles */
+/* base styles */
 body {
-    background-color: var(--color-background);
+    background-color: var(--color-background) !important;
     min-height: 100vh;
     margin: 0;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
+/* typography */
 p:not(.footer p), li {
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-family: "aktiv-grotesk", sans-serif;
     font-weight: 300;
     font-style: normal;
 }
 
+/* header */
 header {
     height: 47vh;
     position: relative;
@@ -59,6 +61,7 @@ header::before {
     z-index: -1;
 }
 
+/* background image */
 .bg-image {
     position: absolute;
     top: 0;
@@ -69,9 +72,10 @@ header::before {
     background-size: cover;
     background-position: center;
     filter: blur(5px);
-    transform: scale(1.1);  /* Prevent blur edges from showing */
+    transform: scale(1.1);
 }
 
+/* logo */
 .logo {
     max-height: 350px;
     z-index: 1;
@@ -79,6 +83,7 @@ header::before {
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
 }
 
+/* container layout */
 .container-fluid {
     background: linear-gradient(180deg, 
         var(--color-primary-strong) 0%,
@@ -86,16 +91,17 @@ header::before {
         var(--color-secondary-strong) 90%,
         var(--color-background) 100%
     );
-    flex: 1 0 auto; /* Changed from flex: 1 */
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 1;
-    margin-bottom: 0; /* Changed from -2px */
-    overflow: hidden; /* Add this to contain the gradient */
-    min-height: 0; /* Add this to prevent overflow */
+    margin-bottom: 0;
+    overflow: hidden;
+    min-height: 0;
 }
 
+/* sections */
 .section {
     min-height: 40vh;
     display: flex;
@@ -109,12 +115,11 @@ header::before {
     opacity: 0;
 }
 
-/* Remove border-top from first section after header */
+/* section borders */
 header + .section {
     border-top: none;
 }
 
-/* Remove border-bottom from last section before footer */
 .section:last-of-type {
     border-bottom: none;
 }
@@ -152,7 +157,7 @@ header + .section {
 }
 
 .section h2 {
-    font-size: 3.2em;
+    font-size: 3.6em;
     margin-bottom: 1.5rem;
     position: relative;
     font-weight: 600;
@@ -176,7 +181,7 @@ header + .section {
 }
 
 h1 {
-    font-size: 4.5em;
+    font-size: 5em;   
     font-weight: 700;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
@@ -185,13 +190,13 @@ h1 {
 }
 
 .section p {
-    font-size: 1.5em;
+    font-size: 1.7em; 
     line-height: 1.8;
     letter-spacing: 0.01em;
 }
 
 .section li {
-    font-size: 1.3em;
+    font-size: 1.5em;  
     line-height: 1.8;
     letter-spacing: 0.01em;
     margin-bottom: 1em;
@@ -218,6 +223,7 @@ h1 {
     transform: translateY(-5px);
 }
     
+/* footer */
 .footer {
     background: var(--color-background);
     color: var(--color-accent);
@@ -225,8 +231,8 @@ h1 {
     position: relative;
     z-index: 2;
     width: 100%;
-    margin-top: auto; /* Add this to push footer to bottom */
-    flex-shrink: 0; /* Add this to prevent footer from shrinking */
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
 .footer p {
@@ -260,7 +266,7 @@ h1 {
     text-align: center;
 }
 
-/* Add this to your existing CSS */
+/* navigation */
 .nav-menu {
     position: fixed;
     top: 20px;
@@ -268,6 +274,7 @@ h1 {
     z-index: 1000;
 }
 
+/* hamburger menu */
 .hamburger {
     background: rgba(41, 128, 145, 0.9);
     border: none;
@@ -308,11 +315,20 @@ h1 {
     display: flex;
 }
 
+ul a {
+    color: rgb(236, 239, 255);
+    font-family: "aktiv-grotesk", sans-serif;
+    font-size: 1.3em; 
+    font-weight: bold; 
+    padding: 5px 15px;
+    transition: color 0.3s ease;
+}
+
 .nav-links a {
     color: white;
     text-decoration: none;
     font-family: "aktiv-grotesk", sans-serif;
-    font-size: 1.1em;
+    font-size: 1.3em;  
     padding: 5px 15px;
     transition: color 0.3s ease;
 }
@@ -334,7 +350,7 @@ h1 {
     transform: rotate(-45deg) translate(5px, -8px);
 }
 
-/* Mobile-specific fixes */
+/* mobile layout */
 @media screen and (max-width: 768px) {
     html {
         min-height: 100vh;
@@ -353,13 +369,15 @@ h1 {
     }
 
     .container-fluid {
-        min-height: 0; /* Changed from 100vh */
+        min-height: 0; 
         background: linear-gradient(180deg, 
             var(--color-primary-strong) 0%,
             var(--color-primary-strong) 30%,
             var(--color-secondary) 70%,
             var(--color-background) 100%
         );
+        margin-bottom: 0;
+        overflow: hidden;
     }
 
     header {
@@ -383,9 +401,25 @@ h1 {
         max-height: 45vh;
         width: auto;
     }
+
+    h1 {
+        font-size: 3.8em;  
+    }
+    
+    .section h2 {
+        font-size: 3em;
+    }
+    
+    .section p, p:not(.footer p) {
+        font-size: 1.5em;
+    }
+    
+    .section li {
+        font-size: 1.4em;
+    }
 }
 
-/* Landscape mode fixes for mobile */
+/* landscape mode */
 @media screen and (max-width: 768px) and (orientation: landscape) {
     html {
         width: 100%;
